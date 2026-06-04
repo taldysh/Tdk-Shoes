@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDK-SHOES — Эксклюзивная обувь и аксессуары</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="top-promo-bar">
+            ЛЕТНЯЯ ВЫПРОДАЖА | ДО -40% НА ВЫБРАННЫЕ МОДЕЛИ | СТРАХОВКА И ДОСТАВКА В КАЗАХСТАН
+        </div>
+        
+        <div class="header-main">
+            <h1 class="logo" onclick="changeCategory('all')">TDK-SHOES</h1>
+        </div>
+
+        <nav class="main-navigation">
+            <div class="nav-links">
+                <a href="#" class="nav-link active" id="nav-all" onclick="changeCategory('all')">КОЛЛЕКЦИЯ</a>
+                <a href="#" class="nav-link" id="nav-shoes" onclick="changeCategory('shoes')">ОБУВЬ</a>
+                <a href="#" class="nav-link" id="nav-bags" onclick="changeCategory('bags')">СУМКИ</a>
+                <a href="#" class="nav-link" id="nav-jeans" onclick="changeCategory('jeans')">ДЖИНСЫ</a>
+            </div>
+            
+            <div class="search-google-style">
+                <div class="search-icon-wrapper">
+                    <svg class="google-lens-icon" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </div>
+                <input type="text" id="search-input" placeholder="Поиск брендов, кроссовок, аксессуаров...">
+            </div>
+        </nav>
+    </header>
+
+    <main class="catalog-container">
+        <div class="shop-breadcrumbs">
+            <span>Главная</span> / <span>Премиум сегмент</span> / <span id="breadcrumb-category">Все товары</span>
+        </div>
+
+        <div class="luxury-filter-bar">
+            <div class="filter-left">
+                <span class="total-count-text">Отображено: <strong id="products-count">0</strong> моделей</span>
+            </div>
+            <div class="filter-right">
+                <span class="info-tag">100% ОРИГИНАЛ</span>
+                <span class="info-tag">ЭКСПРЕСС КУРЬЕР</span>
+            </div>
+        </div>
+        
+        <div id="products-container" class="products-grid"></div>
+    </main>
+
+    <footer class="luxury-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <h4>TDK-SHOES CONCEPT</h4>
+                <p>Прямые поставки аутентичной обуви и аксессуаров из лучших бутиков Европы.</p>
+            </div>
+            <div class="footer-col">
+                <h4>СЕРВИС</h4>
+                <p>Доставка до двери по всему Казахстану. Контроль качества на каждом этапе заказа.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 TDK-SHOES. All Rights Reserved. Confidential Luxury Shopping.</div>
+    </footer>
+
+    <div id="product-detail-modal" class="side-modal">
+        <div class="modal-overlay" onclick="closeProductModal()"></div>
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeProductModal()">×</button>
+            
+            <div class="modal-body-scroll">
+                <div class="modal-gallery">
+                    <div class="main-preview-box">
+                        <img id="modal-main-preview" src="" alt="product preview">
+                    </div>
+                    <div id="modal-thumbnails" class="thumbnails-container"></div>
+                </div>
+
+                <div class="modal-info">
+                    <span class="modal-status-badge"></span>
+                    <h2 class="modal-brand"></h2>
+                    <h3 class="modal-product-name"></h3>
+                    <p class="modal-sku"></p>
+                    
+                    <div class="modal-price-box">
+                        <span class="modal-price"></span>
+                        <span class="modal-installment"></span>
+                    </div>
+
+                    <div class="option-section">
+                        <h4>ВЫБЕРИТЕ ЦВЕТ:</h4>
+                        <div id="modal-colors-selector" class="modal-colors-selector"></div>
+                    </div>
+
+                    <div class="option-section">
+                        <h4>ВЫБЕРИТЕ РАЗМЕР:</h4>
+                        <div class="modal-sizes-selector"></div>
+                    </div>
+
+                    <div class="order-form-container">
+                        <form id="telegram-checkout-form">
+                            
+                            <div id="checkout-step-fields">
+                                <h4>ДАННЫЕ ДЛЯ ДОСТАВКИ ЗАКАЗА</h4>
+                                <div class="input-group">
+                                    <label>Ваше Имя и Фамилия</label>
+                                    <input type="text" id="order-name" required placeholder="Константин">
+                                </div>
+                                <div class="input-group">
+                                    <label>Телефон (WhatsApp)</label>
+                                    <input type="tel" id="order-phone" required placeholder="+7 (707) 123-4567">
+                                </div>
+                                <div class="input-group">
+                                    <label>Адрес доставки в РК</label>
+                                    <input type="text" id="order-address" required placeholder="г. Алматы, пр. Аль-Фараби 7, кв 12">
+                                </div>
+                                
+                                <button type="button" id="to-payment-btn" class="green-action-btn">
+                                    ПЕРЕЙТИ К ОПЛАТЕ
+                                </button>
+                            </div>
+
+                            <div id="checkout-step-requisites" style="display: none;">
+                                <div class="requisites-alert-box">
+                                    <h4>🏛️ РЕКВИЗИТЫ ДЛЯ ОПЛАТЫ ЗАКАЗА</h4>
+                                    <p class="req-notice">Для отправки заявки байеру, пожалуйста, совершите перевод стоимости товара или первоначального взноса рассрочки по указанным реквизитам:</p>
+                                    
+                                    <div class="bank-card-details">
+                                        <div class="bank-row"><span>Банк:</span> <strong>Kaspi Bank (АО Магазин)</strong></div>
+                                        <div class="bank-row"><span>Номер телефона:</span> <strong id="copy-phone">+7 (707) 888-9911</strong></div>
+                                        <div class="bank-row"><span>Получатель:</span> <strong>Диас К. (Байер TDK)</strong></div>
+                                        <div class="bank-row"><span>Назначение:</span> <strong>Оплата обуви/заказа</strong></div>
+                                    </div>
+                                    <p class="req-sub-text">*После нажатия кнопки «Подтвердить оплату», чек и параметры вашего заказа мгновенно отправятся в обработку.</p>
+                                </div>
+
+                                <button type="submit" id="checkout-submit-btn" class="green-action-btn final-pay">
+                                    ПОДТВЕРДИТЬ ОПЛАТУ И ЗАКАЗАТЬ
+                                </button>
+                                
+                                <button type="button" id="back-to-fields-btn" class="back-link-btn">
+                                    ← Вернуться к изменению данных
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
